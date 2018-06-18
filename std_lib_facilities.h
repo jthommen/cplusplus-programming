@@ -102,6 +102,7 @@ struct String : std::string {
 	using size_type = std::string::size_type;
 //	using string::string;
 
+	/*
 	char& operator[](unsigned int i) // rather than return at(i);
 	{
 		if (i<0||size()<=i) throw Range_error(i);
@@ -112,7 +113,7 @@ struct String : std::string {
 	{
 		if (i<0||size()<=i) throw Range_error(i);
 		return std::string::operator[](i);
-	}
+	} */
 };
 
 
