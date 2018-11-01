@@ -5,6 +5,7 @@
       "ostream": "cpp",
       "iomanip": "cpp",
       "random": "cpp",
-      "regex": "cpp"
+      "regex": "cpp",
+      "ios": "cpp"
     }
   }

@@ -7,18 +7,14 @@ struct Reading {
 
 int main()
 {
+  // Getting input file
   cout << "Please enter input file name: ";
   string iname;
   cin >> iname;
   ifstream ist{iname}; // Initializing ist stream by opening file <iname>
   if(!ist) error("can't open input file ", iname); // Checking if open was successful
 
-  string oname;
-  cout << "Please enter output file name: ";
-  cin >> oname;
-  ofstream ost{oname}; 
-  if(!ost) error("can't open output file ", oname);
-
+  // Storing input from file in memory
   vector<Reading> temps; // store read input here
   int hour;
   double temperature;
@@ -27,8 +23,23 @@ int main()
     cout << "Time: " << hour << " h, Temperature: " << temperature << " C.\n";
     temps.push_back(Reading{hour, temperature});
   }
+  ist.close();
 
-  for(int i = 0; i < temps.size(); ++i)
+  // Getting output file
+  string oname;
+  cout << "Please enter output file name: ";
+  cin >> oname;
+  ofstream ost{oname, ios_base::app}; 
+  if(!ost) error("can't open output file ", oname);
+
+  cout << "Output: \n";
+  // Storing output from memory in file
+  for(int i=0; i < temps.size(); ++i)
+  {
+    cout << '(' << temps[i].hour << ','
+        << temps[i].temperature << ")\n";
     ost << '(' << temps[i].hour << ','
         << temps[i].temperature << ")\n";
+  }
+    
 }

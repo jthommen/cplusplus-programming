@@ -1,5 +1,5 @@
 CC=g++
-FNAME=try_this01
+FNAME=fltk_test
 
 namemake: $(FNAME).cpp
 	$(CC) -g $(FNAME).cpp -o ../a -std=c++11
