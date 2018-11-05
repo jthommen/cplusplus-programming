@@ -19,4 +19,3 @@ LINKFLTK_IMG = $(shell fltk-config --use-images --ldstaticflags)
 
 app: $(FNAME).cpp
 	$(CXX) $(CXXFLAGS) $(DEPS) $(FNAME).cpp -o $(FNAME) $(LINKFLTK) $(LINKFLTK_IMG)$
-	clean

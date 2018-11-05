@@ -1,8 +1,21 @@
-CC=clang++
-FNAME=fltk_test2
-# FLTKCONFIG = /usr/local/bin/fltk-config
-INCLUDE=-I/usr/local/Cellar/fltk/1.3.4-2/include
-LIBS=/usr/local/Cellar/fltk/1.3.4-2/lib/libfltk.a
+# Example makefile compiling the FLTK course code :)
 
-namemake: $(FNAME).cpp
-	$(CC) -I$(INCLUDE) -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -g -o ../a $(FNAME).cpp $(LIBS) -lpthread -framework Cocoa
+# Let FLTK return the compiler
+CXX = $(shell fltk-config --cxx)
+
+# Let FLTK set the system specific compiler flags
+CXXFLAGS = $(shell fltk-config --cxxflags) -g -std=c++11 -I ../lib
+
+# Set app name
+FNAME=drill
+
+# Set dependencies needed to compile
+DEPS = ../lib/Graph.cpp ../lib/Window.cpp ../lib/GUI.cpp ../lib/Simple_window.cpp
+
+# FLTK linker configurations
+LINKFLTK = $(shell fltk-config --ldstaticflags)
+LINKFLTK_GL = $(shell fltk-config --use-gl --ldstaticflags)
+LINKFLTK_IMG = $(shell fltk-config --use-images --ldstaticflags)
+
+app: $(FNAME).cpp
+	$(CXX) $(CXXFLAGS) $(DEPS) $(FNAME).cpp -o $(FNAME) $(LINKFLTK) $(LINKFLTK_IMG)$
