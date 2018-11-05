@@ -6,6 +6,7 @@
       "iomanip": "cpp",
       "random": "cpp",
       "regex": "cpp",
-      "ios": "cpp"
+      "ios": "cpp",
+      "string": "cpp"
     }
   }

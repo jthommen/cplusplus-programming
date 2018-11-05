@@ -1,0 +1,25 @@
+OS: OSX 10.14 (Mojave)
+XCode: 10.1
+Compiler: clang++
+FLTK: 1.3.4
+
+1. Installing home brew (https://brew.sh/)
+2. Installing FLTK over brew (brew install FLTK)
+3. Might have to give directories write access, command will shop up in brew
+4. Explore FLTK config file (/usr/local/bin/fltk-config)
+5. Write simple FLTK hello_world program
+6. Use FLTK config file to get necessary flags (/usr/local/bin/fltk-config --compile hello_world.cpp)
+7. Use commands/flags given bei the FLTK config to compile and link your program
+8. Launch executable
+DONE!
+
+FLTK: 1.4.x
+
+1. Download latest 1.4.x release from http://www.fltk.org/software.php
+2. tar -zxvf fltk-1.4.x-r13107.tar.gz
+3. cd fltk-1.4.x-r13107
+4. make clean
+5. ./configure
+6. make
+7. sudo make install
+8. version check fltk-config --version

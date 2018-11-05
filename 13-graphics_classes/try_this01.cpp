@@ -1,6 +1,6 @@
-#include "../Simple_window.h"
-#include "../Graph.h"
-#include "../Point.h"
+#include "../lib/Simple_window.h"
+#include "../lib/Graph.h"
+#include "../lib/Point.h"
 
 int main() 
 {
