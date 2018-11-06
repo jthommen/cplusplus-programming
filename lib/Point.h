@@ -4,6 +4,8 @@
 // "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
 //
 
+// Checks if code has been included before or in another header file
+// If not, defines the token and includes it
 #ifndef POINT_GUARD
 #define POINT_GUARD
 
@@ -11,7 +13,7 @@
 
 struct Point {
     int x, y;
-    Point(int xx, int yy) : x(xx), y(yy) { }
+    constexpr Point(int xx, int yy) : x(xx), y(yy) { }
     Point() :x(0), y(0) { }
 };
 

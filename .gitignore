@@ -14,5 +14,5 @@
 # Ignore system file
 .DS_Store
 
-# Ignore debugging file
+# Ignore debugging folder
 *.dSYM
