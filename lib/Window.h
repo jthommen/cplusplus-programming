@@ -13,8 +13,9 @@
 #include <FL/Fl_Window.H>
 #include "Point.h"
 
-using std::string;
-using std::vector;
+//using std::string;
+//using std::vector;
+using namespace std;
 
 namespace Graph_lib
 {
@@ -23,12 +24,12 @@ namespace Graph_lib
 
 //------------------------------------------------------------------------------
 
-    class Window : public Fl_Window { 
+    class Window : public Fl_Window {
     public:
         // let the system pick the location:
         Window(int w, int h, const string& title);
         // top left corner in xy
-        Window(Point xy, int w, int h, const string& title);    
+        Window(Point xy, int w, int h, const string& title);
 
         virtual ~Window() { }
 
@@ -42,7 +43,7 @@ namespace Graph_lib
         void attach(Shape& s) { shapes.push_back(&s); }
         void attach(Widget&);
 
-        void detach(Shape& s);     // remove s from shapes 
+        void detach(Shape& s);     // remove s from shapes
         void detach(Widget& w);    // remove w from window (deactivates callbacks)
 
         void put_on_top(Shape& p); // put p on top of other shapes

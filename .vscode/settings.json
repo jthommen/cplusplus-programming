@@ -1,5 +1,8 @@
 {
     "files.associations": {
+      "BUILD": "bazel",
+      "METADATA": "bazel",
+      "WORKSPACE": "bazel",
       "iostream": "cpp",
       "iosfwd": "cpp",
       "ostream": "cpp",
@@ -7,6 +10,7 @@
       "random": "cpp",
       "regex": "cpp",
       "ios": "cpp",
-      "string": "cpp"
+      "string": "cpp",
+      "functional": "cpp"
     }
   }

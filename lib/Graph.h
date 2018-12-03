@@ -49,7 +49,7 @@ struct Color {
 
     int as_int() const { return c; }
 
-    char visibility() const { return v; } 
+    char visibility() const { return v; }
     void set_visibility(Transparency vv) { v=vv; }
 private:
     char v;    // invisible and visible for now
@@ -62,8 +62,8 @@ struct Line_style {
     enum Line_style_type {
         solid=FL_SOLID,            // -------
         dash=FL_DASH,              // - - - -
-        dot=FL_DOT,                // ....... 
-        dashdot=FL_DASHDOT,        // - . - . 
+        dot=FL_DOT,                // .......
+        dashdot=FL_DASHDOT,        // - . - .
         dashdotdot=FL_DASHDOTDOT,  // -..-..
     };
 
@@ -140,9 +140,9 @@ public:
 
 //------------------------------------------------------------------------------
 
-typedef double Fct(double);
+typedef std::function<double (double)> Fct;
 
-class Shape  {        // deals with color and style, and holds sequence of lines 
+class Shape  {        // deals with color and style, and holds sequence of lines
 public:
     void draw() const;                 // deal with color and draw lines
     virtual void move(int dx, int dy); // move the shape +=dx and +=dy
@@ -159,14 +159,14 @@ public:
 
     virtual ~Shape() { }
 protected:
-    Shape();    
+    Shape();
     virtual void draw_lines() const;   // draw the appropriate lines
     void add(Point p);                 // add p to points
     void set_point(int i,Point p);     // points[i]=p;
 private:
     vector<Point> points;              // not used by all shapes
     Color lcolor;                      // color for lines and characters
-    Line_style ls; 
+    Line_style ls;
     Color fcolor;                      // fill color
 
     Shape(const Shape&);               // prevent copying
@@ -178,7 +178,7 @@ private:
 struct Function : Shape {
     // the function parameters are not stored
     Function(Fct f, double r1, double r2, Point orig,
-        int count = 100, double xscale = 25, double yscale = 25);    
+        int count = 100, double xscale = 25, double yscale = 25);
 };
 
 //------------------------------------------------------------------------------
@@ -282,7 +282,7 @@ struct Circle : Shape {
 
     void draw_lines() const;
 
-    Point center() const ; 
+    Point center() const ;
     int radius() const { return r; }
     void set_radius(int rr) { r=rr; }
 private:
@@ -294,7 +294,7 @@ private:
 struct Ellipse : Shape {
     Ellipse(Point p, int w, int h)    // center, min, and max distance from center
         : w(w), h(h)
-    { 
+    {
         add(Point(p.x-w,p.y-h));
     }
 
@@ -357,7 +357,7 @@ struct Image : Shape {
     void set_mask(Point xy, int ww, int hh) { w=ww; h=hh; cx=xy.x; cy=xy.y; }
 private:
     int w,h;  // define "masking box" within image relative to position (cx,cy)
-    int cx,cy; 
+    int cx,cy;
     Fl_Image* p;
     Text fn;
 };
