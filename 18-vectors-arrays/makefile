@@ -10,16 +10,12 @@ LIB=../lib
 CXXFLAGS = $(shell fltk-config --cxxflags) -g -std=c++11 -I $(LIB)
 
 # Set app name
-FNAME=vector
+FNAME=drill02
 
 # Set dependencies needed to compile
 HEADERS = $(LIB)/Graph.h $(LIB)/GUI.h $(LIB)/Simple_window.h $(LIB)/std_lib_facilities.h $(LIB)/Window.h
 DEPS = $(LIB)/Graph.cpp $(LIB)/Window.cpp $(LIB)/GUI.cpp $(LIB)/Simple_window.cpp
 
-# FLTK linker configurations
-LINKFLTK = $(shell fltk-config --ldstaticflags)
-LINKFLTK_GL = $(shell fltk-config --use-gl --ldstaticflags)
-LINKFLTK_IMG = $(shell fltk-config --use-images --ldstaticflags)
 
-app: $(HEADERS)
-	$(CXX) $(CXXFLAGS) $(DEPS) $(FNAME).cpp -o $(FNAME) $(LINKFLTK) $(LINKFLTK_IMG)
+app:
+	$(CXX) $(CXXFLAGS) $(FNAME).cpp -o $(FNAME)
