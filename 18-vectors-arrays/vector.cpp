@@ -96,7 +96,6 @@ int main()
 
   vector v(5);
 
-  // Bug: Loop breaks after one go
   for (int i=0; i<v.size(); ++i)
   {
     v.set(i, 1.1*i);

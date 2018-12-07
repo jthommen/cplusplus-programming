@@ -15,7 +15,7 @@
 	By Chapter 10, you don't need this file and after Chapter 21, you'll understand it
 
 	Revised April 25, 2010: simple_error() added
-	
+
 	Revised November 25 2013: remove support for pre-C++11 compilers, use C++11: <chrono>
 	Revised November 28 2013: add a few container algorithms
 	Revised June 8 2014: added #ifndef to workaround Microsoft C++11 weakness
