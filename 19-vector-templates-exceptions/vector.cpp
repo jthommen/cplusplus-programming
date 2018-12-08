@@ -29,7 +29,7 @@ public:
   vector(vector&& v); // move constructor
   vector& operator=(vector&& v); // move assignment
 
-  // checked access
+  // range checked access
   T& at(int n);
   const T& at(int n) const;
 
@@ -50,7 +50,7 @@ public:
 
 };
 
-// checked access
+// range checked access
 template<typename T, typename A> T& vector<T,A>::at(int n)
 {
   if(n<0 || sz <=n) throw out_of_range();
@@ -85,7 +85,8 @@ template<typename T, typename A> vector<T,A>::vector(const vector& v) // copy co
   std::copy(v.elem, v.elem+sz, elem);
 }
 
-template<typename T, typename A> vector<T,A>& vector<T,A>::operator=(const vector& v) // copy assignment (deep copying)
+template<typename T, typename A>
+vector<T,A>& vector<T,A>::operator=(const vector& v) // copy assignment (deep copying)
 // make this a copy of v
 {
   if(this == &v) return *this; // self-assignment, no work needed
@@ -133,18 +134,20 @@ template<typename T, typename A> const T& vector<T,A>::operator[](int n) const /
   return elem[n]; // return value
 }
 
-template<typename T, typename A> void vector<T,A>::reserve(int newalloc) // reserving space for vector expansion
+template<typename T, typename A>
+void vector<T,A>::reserve(int newalloc) // reserving space for vector expansion
 {
   if(newalloc<=space) return; // never decrease allocation
-  T* p = alloc.allocate(newalloc); // allocate new space
+  std::unique_ptr<T[]> p(alloc.allocate(newalloc)); // allocate new space
   for(int i=0; i<sz; ++i) alloc.construct(&p[i], elem[i]); // copy old elements
   for(int i=0; i<sz; ++i) alloc.destroy(&elem[i]); // destroy
   alloc.deallocate(elem, space); // deallocate old space
-  elem = p;
+  elem = p.release();
   space = newalloc;
 }
 
-template<typename T, typename A>void vector<T,A>::resize(int newsize, T val) // resizing current vector
+template<typename T, typename A>
+void vector<T,A>::resize(int newsize, T val) // resizing current vector
 // T(): use T() as default value unless the user says otherwise
 // make the vector have newsize elements
 // initialize each new element with the default value 0.0
@@ -199,7 +202,6 @@ int main()
   vector<No_default> v3;
   v3.resize(100, No_default(2)); // add 100 copies of No_default(2)
   //v3.resize(200); // error: tries to add 100 No_defaults
-
   vector<int> v5 {1,2,3,4,5,6};
   print_some(v5);
 }
