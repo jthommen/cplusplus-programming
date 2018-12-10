@@ -22,6 +22,9 @@
       "type_traits": "cpp",
       "typeinfo": "cpp",
       "algorithm": "cpp",
-      "vector": "cpp"
+      "vector": "cpp",
+      "list": "cpp",
+      "array": "cpp",
+      "iterator": "cpp"
     }
   }
