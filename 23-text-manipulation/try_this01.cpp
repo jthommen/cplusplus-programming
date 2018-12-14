@@ -82,6 +82,35 @@ std::string find_subject(const Message* m)
     return "";
 }
 
+void print_message(const Message* m)
+// Iterating over lines in messages
+// printing line for line
+{
+  int count = 0;
+  for(const auto& x : *m)
+  {
+    count++;
+    std::cout << "Line " << count<< ": " <<std::string(x,0) << std::endl;
+    std::cout << "----\n";
+  }
+}
+
+void print_message2(const Message* m)
+{
+  // This is...
+  for(const auto& x: *m)
+  {
+    std::cout << "x: '" << x << "'\n";
+  }
+  
+  // ....equivalent to: 
+  // (Line_iter = std::vector<std::string>::const_iterator)
+  // for(Line_iter i=m->begin(); i<m->end(); ++i)
+  // {
+  //   std::cout << "i: '" << *i << "'\n";
+  // }
+}
+
 int main()
 {
   Mail_file mfile{"my-mail-file.txt"};
@@ -95,6 +124,16 @@ int main()
     if(find_from_addr(&m, s))
       sender.insert(std::make_pair(s, &m));
   }
+
+  // Printing out messages
+  // int count = 0;
+  // for(const auto& x : mfile.m) // Iterating over messages
+  // {
+  //   count++;
+  //   std::cout << "Message: " << count << std::endl;;
+  //   print_message(&x);
+  // }
+  print_message2(&mfile.m[1]);
 
   // 2. iterate through multimap, extract subjects of specified sender
   auto pp = sender.equal_range("John Doe <jdoe@machine.example>");
