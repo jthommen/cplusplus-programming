@@ -12,7 +12,7 @@ template<class T> std::ostream& operator<<(std::ostream& os, const Matrix<T>& v)
     os << '{';
 
     for (Index i = 0; i<v.dim1(); ++i)
-        os << "  " << setw(5) << setprecision(3) << v(i);
+        os << "  " << std::setw(5) << std::setprecision(3) << v(i);
     os << "  }";
     return os;
 }
@@ -45,7 +45,7 @@ template<class T> std::istream& operator>>(std::istream& is, Matrix<T>& v)
     is >> ch;
 
     if (ch!='}') error("'}' missing in Matrix<T,1> input");
-  
+
     return is;
 }
 
