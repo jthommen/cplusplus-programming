@@ -10,8 +10,9 @@ LIB=../lib
 CXXFLAGS = $(shell fltk-config --cxxflags) -g -std=c++14 -I $(LIB)
 
 # Set app name
-FNAME=drill
+FNAME=binary_search
 
+# Set dependencies needed to compile
 HEADERS = $(LIB)/Matrix.h $(LIB)/MatrixIO.h
 # DEPS =
 
