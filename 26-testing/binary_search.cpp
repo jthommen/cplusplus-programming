@@ -71,7 +71,6 @@ void timing_binary_search(std::vector<T>& v, T t)
 int main()
 {
     std::vector<int> data;
-
     // initialize
     // needs to be sorted
     for(int i=0; i<10; ++i) data.push_back(i);
@@ -86,6 +85,7 @@ int main()
     timing_binary_search(data, -1); // error
     timing_binary_search(data, 15); // error
     timing_binary_search(data, 5); // found
+
 }
 
 // correct because
