@@ -49,6 +49,11 @@
       "string_view": "cpp",
       "system_error": "cpp",
       "tuple": "cpp",
-      "utility": "cpp"
+      "utility": "cpp",
+      "chrono": "cpp",
+      "cstring": "cpp",
+      "memory": "cpp",
+      "numeric": "cpp",
+      "ratio": "cpp"
     }
   }

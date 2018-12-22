@@ -1,8 +1,12 @@
 #include<iostream>
 #include<vector>
+#include<chrono>
+
+// Binary search with vector and subscripting
+// Could also have written it with iterators...
 
 template<typename T>
-void binary_search(std::vector<T>& vr,T t)
+bool binary_search(std::vector<T>& vr,T t)
 {
     std::cout<< "----\nBinary search called.\n----\n";
     int upper = vr.size();
@@ -15,12 +19,12 @@ void binary_search(std::vector<T>& vr,T t)
     if(t < 0)
     {
         std::cerr << "Invalid search term.\n";
-        return;
+        return false;
     }
     if(t > vr.size())
     {
         std::cerr << "Number not here.\n";
-        return;
+        return false;
     }
 
     while(upper!=lower)
@@ -32,7 +36,7 @@ void binary_search(std::vector<T>& vr,T t)
         if(vr[middle]==t)
         {
             std::cout << "Result: " << vr[middle] << std::endl;
-            return;
+            return true;
         }
         else if(vr[middle] < t) // binary on right part
         {
@@ -50,7 +54,18 @@ void binary_search(std::vector<T>& vr,T t)
     
     // Can't find element, return
     std::cout << "Key not found!\n";
-    return;
+    return false;
+}
+
+template<typename T>
+void timing_binary_search(std::vector<T>& v, T t)
+{
+    auto t1 = std::chrono::system_clock::now();
+    binary_search(v, t); // found
+    auto t2 = std::chrono::system_clock::now();
+    std::cout << "Binary Search took: " 
+        << std::chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count()
+        << " milliseconds.\n";
 }
 
 int main()
@@ -63,15 +78,14 @@ int main()
     for(auto n:data) std::cout << n << '\t';
     std::cout << std::endl;
 
-    // key to search for
-    binary_search(data, 4); // found
-    binary_search(data, 1); // found
-    binary_search(data, 0); // BUG
-    binary_search(data, 10); // BUG
-    binary_search(data, 8); // found
-    binary_search(data, -1); // found
-    binary_search(data, 15); // found
-    binary_search(data, 5); // found
+    timing_binary_search(data, 4); // found, 1ms
+    timing_binary_search(data, 1); // found
+    timing_binary_search(data, 0); // found
+    timing_binary_search(data, 10); // found
+    timing_binary_search(data, 8); // found
+    timing_binary_search(data, -1); // error
+    timing_binary_search(data, 15); // error
+    timing_binary_search(data, 5); // found
 }
 
 // correct because
