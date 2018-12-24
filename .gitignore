@@ -16,3 +16,6 @@
 
 # Ignore debugging folder
 *.dSYM
+
+# Ignore .out files
+*.out
